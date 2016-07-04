@@ -11,6 +11,7 @@ object Dependencies {
     val apacheCodec = "1.10"
     val bouncyCastle = "1.52"
     val akka = "2.4.7"
+    val typesafeConfig = "1.3.0"
   }
 
   object Libs {
@@ -35,5 +36,7 @@ object Dependencies {
     val jmockit = "org.jmockit" % "jmockit" % V.jmockit % "test"
 
     val akkaHttp = "com.typesafe.akka" %% "akka-http-core" % V.akka
+    val akkaHttpExp = "com.typesafe.akka" %% "akka-http-experimental" % V.akka
+    val typesafeConfig = "com.typesafe" % "config" % V.typesafeConfig
   }
 }

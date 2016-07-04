@@ -323,6 +323,6 @@ lazy val akkaEdge = project.in(file("akka/edge"))
   .settings(
     name := "jwt-akka",
     target <<= target(_ / "edge"),
-    libraryDependencies ++= Seq(Libs.akkaHttp, Libs.scalatestPlus)
+    libraryDependencies ++= Seq(Libs.akkaHttp, Libs.akkaHttpExp, Libs.typesafeConfig, Libs.scalatestPlus)
   )
   .dependsOn(coreEdge)
