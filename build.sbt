@@ -10,7 +10,7 @@ import com.typesafe.sbt.SbtGhPages.GhPagesKeys._
 val previousVersion = "0.7.1"
 val buildVersion = "0.7.2"
 
-val projects = Seq("coreCommon", "playJson", "json4sNative", "json4sJackson", "circe")
+val projects = Seq("coreCommon", "playJson", "json4sNative", "json4sJackson", "circe", "akka")
 val crossProjects = projects.map(p => Seq(p + "Legacy", p + "Edge")).flatten
 
 addCommandAlias("testAll", crossProjects.map(p => p + "/test").mkString(";", ";", "") + ";playEdge/test")
@@ -125,8 +125,8 @@ lazy val jwtScala = project.in(file("."))
   .settings(
     name := "jwt-scala"
   )
-  .aggregate(playEdge, json4sNativeLegacy, json4sNativeEdge, json4sJacksonLegacy, json4sJacksonEdge, circeLegacy, circeEdge)
-  .dependsOn(playEdge, json4sNativeLegacy, json4sNativeEdge, json4sJacksonLegacy, json4sJacksonEdge, circeLegacy, circeEdge)
+  .aggregate(akkaEdge, playEdge, json4sNativeLegacy, json4sNativeEdge, json4sJacksonLegacy, json4sJacksonEdge, circeLegacy, circeEdge)
+  .dependsOn(akkaEdge, playEdge, json4sNativeLegacy, json4sNativeEdge, json4sJacksonLegacy, json4sJacksonEdge, circeLegacy, circeEdge)
 
 lazy val docs = project.in(file("docs"))
   .settings(name := "jwt-docs")
@@ -317,3 +317,12 @@ lazy val examplePlayAngularProject = project.in(file("examples/play-angular"))
   .enablePlugins(PlayScala)
   .aggregate(playEdge)
   .dependsOn(playEdge)
+
+lazy val akkaEdge = project.in(file("akka/edge"))
+  .settings(releaseSettings)
+  .settings(
+    name := "jwt-akka",
+    target <<= target(_ / "edge"),
+    libraryDependencies ++= Seq(Libs.akkaHttp, Libs.scalatestPlus)
+  )
+  .dependsOn(coreEdge)

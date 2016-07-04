@@ -10,6 +10,7 @@ object Dependencies {
     val jmockit = "1.24"
     val apacheCodec = "1.10"
     val bouncyCastle = "1.52"
+    val akka = "2.4.7"
   }
 
   object Libs {
@@ -32,5 +33,7 @@ object Dependencies {
     val scalatest = "org.scalatest" %% "scalatest" % V.scalatest % "test"
     val scalatestPlus = "org.scalatestplus" %% "play" % V.scalatestPlus % "test"
     val jmockit = "org.jmockit" % "jmockit" % V.jmockit % "test"
+
+    val akkaHttp = "com.typesafe.akka" %% "akka-http-core" % V.akka
   }
 }
